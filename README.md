@@ -9,8 +9,8 @@ Practice Front-end Application
 - [x] Vite Bundling
 - [x] Git Source Control with GitHub
 - [x] Tailwind CSS with UI components
-- [ ] Page.js for routing
-- [ ] Lit-html for templating
+- [x] Page.js for routing
+- [x] Lit-html for templating
 - [ ] Firebase authentication
 - [ ] Firebase database
 - [ ] Firebase hosting
