@@ -1,3 +1,4 @@
+import '../src/config/firebaseInit';
 import page from 'page';
 
 import homeView from './views/home';

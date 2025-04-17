@@ -1,6 +1,9 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { html } from "lit-html";
+import { auth } from "../config/firebaseInit";
+import page from "page";
 
-const template = () => html`
+const template = (onSubmit) => html`
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img class="mx-auto h-10 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
@@ -8,7 +11,7 @@ const template = () => html`
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form class="space-y-6" action="#" method="POST">
+        <form @submit=${onSubmit} class="space-y-6" action="#" method="POST">
         <div>
             <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
             <div class="mt-2">
@@ -42,9 +45,21 @@ const template = () => html`
 `;
 
 export default function(ctx) {
-    ctx.render(template());
+    ctx.render(template(loginSubmitHandler));
 }
 
 async function loginSubmitHandler(e) {
-    // e.preventDefault();
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const { email, password } = Object.fromEntries(formData);
+
+    try {
+        const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+        page.redirect('/');
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+    
 }
