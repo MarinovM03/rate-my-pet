@@ -1,3 +1,8 @@
+import page from 'page';
 import homeView from './views/home.js';
 
-homeView();
+// Setup routes
+page('/', homeView);
+
+// Start routing
+page();

@@ -1,8 +1,4 @@
 import { html, render } from 'lit-html';
-// import page from page
-
-console.log({html, render});
-
 
 const template = () => html`
       <div class="bg-white">
