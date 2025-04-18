@@ -12,7 +12,7 @@ Practice Front-end Application
 - [x] Page.js for routing
 - [x] Lit-html for templating
 - [x] Firebase authentication
-- [ ] Firebase database
+- [x] Firebase database
 - [x] Firebase hosting
 - [ ] Mocha for unit testing
 - [ ] Playwright for e2e testing
