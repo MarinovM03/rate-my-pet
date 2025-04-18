@@ -2,7 +2,7 @@ import { html, render } from "lit-html";
 
 const rootEl = document.getElementById('root');
 
-const layoutTemplate = (body) => html`
+const layoutTemplate = (body, ctx) => html`
     <div class="h-full bg-white">
       <header class="absolute inset-x-0 top-0 z-50">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -23,13 +23,20 @@ const layoutTemplate = (body) => html`
           <div class="hidden lg:flex lg:gap-x-12">
             <a href="/" class="text-sm/6 font-semibold text-gray-900">Home</a>
             <a href="/pets" class="text-sm/6 font-semibold text-gray-900">Pets</a>
-            <a href="/login" class="text-sm/6 font-semibold text-gray-900">Login</a>
           </div>
-          <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
-          </div>
-        </nav>
 
+          ${ctx.isAuthenticated ? html`
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+              <a href="/logout" class="text-sm/6 font-semibold text-gray-900">Log out <span aria-hidden="true">&rarr;</span></a>
+            </div>
+          `
+          : html`
+            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+              <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            </div>`}
+
+
+        </nav>
         
         <!-- Mobile menu, show/hide based on menu open state. -->
         <div class="lg:hidden" role="dialog" aria-modal="true">
@@ -73,9 +80,12 @@ const layoutTemplate = (body) => html`
 
 
 export default function (ctx, next) {
-    ctx.render = (templateResult) => {
-        render(layoutTemplate(templateResult), rootEl);
-    }
+  const { user, isAuthenticated } = ctx;
+  console.log({ user, isAuthenticated });
 
-    next();
+  ctx.render = (templateResult) => {
+      render(layoutTemplate(templateResult, ctx), rootEl);
+  }
+
+  next();
 }
