@@ -31,16 +31,16 @@ const layoutTemplate = (body, ctx) => html`
             </div>
           `
           : html`
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-              <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+            <div class="hidden lg:flex lg:flex-1 lg:gap-8 lg:justify-end">
+              <a href="/login" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true"></span></a>
+              <a href="/register" class="text-sm/6 font-semibold text-gray-900">Register <span aria-hidden="true"></span></a>
             </div>`}
 
 
         </nav>
         
         <!-- Mobile menu, show/hide based on menu open state. -->
-        <div class="lg:hidden" role="dialog" aria-modal="true">
-          <!-- Background backdrop, show/hide based on slide-over state. -->
+        <!-- <div class="lg:hidden" role="dialog" aria-modal="true">
           <div class="fixed inset-0 z-50"></div>
           <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div class="flex items-center justify-between">
@@ -69,7 +69,7 @@ const layoutTemplate = (body, ctx) => html`
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </header>
 
         <div class="relative isolate px-6 pt-14 lg:px-8">${body}</div>
